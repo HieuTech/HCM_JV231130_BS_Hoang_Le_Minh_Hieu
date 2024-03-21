@@ -114,6 +114,7 @@ public class Book {
 
     public void inputData(Scanner scanner) {
         byte arrLength = (byte) books.length;
+        Book book1 = new Book();
         float maxValue = 0;
         for (Book book : books) {
                 float interest = (float) (book.getExportPrice() - book.getImportPrice());
@@ -122,17 +123,18 @@ public class Book {
                 maxValue = book.getInterest();
             }
         }
+
         float secondMaxValue = (byte) books[0].getInterest(), currentValue;
         for (int i = 0; i < arrLength; i++) {
             currentValue = books[i].getInterest();
             if(secondMaxValue < currentValue){
                 if(secondMaxValue < maxValue && currentValue != maxValue){
                     secondMaxValue = currentValue;
+//                    book1 = books[i];
                 }
             }
         }
-        System.out.printf("So lon thu 2  la %f " ,secondMaxValue);
-
+        System.out.printf("Gia tri lon thu 2 la: %f \n", secondMaxValue);
     }
 
 
@@ -144,12 +146,14 @@ public class Book {
         byte arrLength = (byte) books.length;
         Book[] newArr = new Book[arrLength - 1];
         boolean isValid = true;
-        for (byte i = 0; i< arrLength; i ++) {
-            newArr[i] = books[i];
+
+        for (byte i = 0; i < newArr.length; i ++) {
             if (books[i].getBookId() == bookId) {
                 isValid = false;
                 continue;
             }
+            newArr[i] = books[i];
+
         }
         books = newArr;
         if(isValid){
